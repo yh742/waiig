@@ -3,6 +3,8 @@ package token
 type TokenType string
 
 const (
+	_ int = iota // ignore first value by assigning to blank identifier
+	LOWEST
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 

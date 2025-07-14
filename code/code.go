@@ -13,6 +13,20 @@ type Opcode byte
 const (
 	OpConstant Opcode = iota
 	OpAdd
+	OpSub
+	OpMul
+	OpDiv
+	OpPop
+	OpTrue
+	OpFalse
+	OpEqual
+	OpNotEqual
+	OpGreaterThan
+	OpMinus
+	OpBang
+	OpJumpNotTruthy
+	OpJump
+	OpNull
 )
 
 type Definition struct {
@@ -21,8 +35,22 @@ type Definition struct {
 }
 
 var definitions = map[Opcode]*Definition{
-	OpConstant: {"OpConstant", []int{2}}, // operand is only 2 bytes width uint16
-	OpAdd:      {"OpAdd", []int{}},       // no operands
+	OpConstant:      {"OpConstant", []int{2}},   // operand is only 2 bytes width uint16
+	OpAdd:           {"OpAdd", []int{}},         // no operands
+	OpPop:           {"OpPop", []int{}},         // no operands
+	OpSub:           {"OpSub", []int{}},         // no operands
+	OpMul:           {"OpMul", []int{}},         // no operands
+	OpDiv:           {"OpDiv", []int{}},         // no operands
+	OpTrue:          {"OpTrue", []int{}},        // no operands
+	OpFalse:         {"OpFalse", []int{}},       // no operands
+	OpEqual:         {"OpEqual", []int{}},       // no operands
+	OpNotEqual:      {"OpNotEqual", []int{}},    // no operands
+	OpGreaterThan:   {"OpGreaterThan", []int{}}, // no operands
+	OpMinus:         {"OpMinus", []int{}},       // no operands
+	OpBang:          {"OpBang", []int{}},        // no operands
+	OpJumpNotTruthy: {"OpJumpNotTruthy", []int{2}},
+	OpJump:          {"OpJump", []int{2}},
+	OpNull:          {"OpNull", []int{}}, // no operands
 }
 
 func Lookup(op byte) (*Definition, error) {

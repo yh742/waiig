@@ -23,6 +23,7 @@ func NewSymbolTable() *SymbolTable {
 }
 
 func (s *SymbolTable) Define(name string) Symbol {
+	// symbol table points to the evalue in the constant
 	symbol := Symbol{Name: name, Index: s.numDefinitions, Scope: GlobalScope}
 	s.store[name] = symbol
 	s.numDefinitions++

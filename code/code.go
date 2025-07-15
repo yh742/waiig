@@ -29,6 +29,9 @@ const (
 	OpNull
 	OpGetGlobal
 	OpSetGlobal
+	OpArray
+	OpHash
+	OpIndex
 )
 
 type Definition struct {
@@ -55,6 +58,9 @@ var definitions = map[Opcode]*Definition{
 	OpNull:          {"OpNull", []int{}}, // no operands
 	OpGetGlobal:     {"OpGetGlobal", []int{2}},
 	OpSetGlobal:     {"OpSetGlobal", []int{2}},
+	OpArray:         {"OpArray", []int{2}}, // operand is 2 bytes width uint16, length of the array
+	OpHash:          {"OpHash", []int{2}},  // operand is 2 bytes width uint16, number of pairs in the hash
+	OpIndex:         {"OpIndex", []int{}},  // no operands, used for indexing into arrays or hashes
 }
 
 func Lookup(op byte) (*Definition, error) {
